@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическое задание №2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+        }
+
+        .error {
+            color: red;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Практическое задание №2</h1>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        // Функция filterArray
+        function filterArray(array, callback) {
+            const result = [];
+            for (let i = 0; i < array.length; i++) {
+                if (callback(array[i])) {
+                    result.push(array[i]);
+                }
+            }
+            return result;
+        }
+
+        // Исходный массив чисел от 1 до 100
+        const numbers = Array.from({ length: 100 }, (_, i) => i + 1);
+
+        // Вывод исходных чисел
+        const output = document.getElementById('output');
+        output.innerHTML = `
+                <h2>Исходные числа</h2>
+                <p>${numbers.join(', ')}</p>
+            `;
+
+        // Фильтрация 1: числа, которые являются квадратами целых чисел
+        const numbersThatAreSquares = filterArray(numbers, function (num) {
+            return Math.sqrt(num) % 1 === 0; // Проверка, является ли число квадратом
+        });
+
+        // Фильтрация 2: числа, которые делятся на 5
+        const numbersDivisibleBy5 = filterArray(numbers, function (num) {
+            return num % 5 === 0;
+        });
+
+        // Вывод результатов фильтрации
+        output.innerHTML += `
+                <h2>Фильтрация чисел</h2>
+                <p>Числа, которые являются квадратами: ${numbersThatAreSquares.join(', ')}</p>
+                <p>Числа, которые делятся на 5: ${numbersDivisibleBy5.join(', ')}</p>
+            `;
+
+        // Асинхронная функция fetchData
+        async function fetchData(url) {
+            return new Promise((resolve, reject) => {
+                fetch(url)
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.text();
+                        } else {
+                            reject(`Ошибка: ${response.status} (${response.statusText})`);
+                        }
+                    })
+                    .then(data => resolve(data))
+                    .catch(error => reject(error));
+            });
+        }
+
+        // Вывод заголовка для асинхронных запросов
+        output.innerHTML += `<h2>Асинхронные запросы</h2>`;
+
+        // Пример успешного использования fetchData
+        fetchData('https://jsonplaceholder.typicode.com/posts/1')
+            .then(data => {
+                output.innerHTML += `<p>Полученные данные: ${data}</p>`;
+            })
+            .catch(error => {
+                output.innerHTML += `<p class="error">Error: ${error}</p>`;
+            });
+
+        // Пример использования fetchData с ошибкой (неверный URL)
+        fetchData('https://jsonplaceholder.typicode.com/nonexistent')
+            .then(data => {
+                output.innerHTML += `<p>Полученные данные: ${data}</p>`;
+            })
+            .catch(error => {
+                output.innerHTML += `<p class="error">Error: ${error}</p>`;
+            });
+    </script>
+</body>
+</html>
