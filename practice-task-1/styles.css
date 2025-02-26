@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Стили для слайд-шоу */
+.slideshow-section {
+    margin-bottom: 40px;
+}
+
+.slideshow-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+.active {
+    display: block;
+}
+
+/* Стили для игры */
+.game-section {
+    text-align: center;
+}
+
+.game-container {
+    margin-top: 20px;
+}
+
+    .game-container input {
+        padding: 5px;
+        margin-right: 10px;
+        width: 100px;
+    }
+
+    .game-container button {
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+    }
+
+        .game-container button:hover {
+            background-color: #45a049;
+        }
+
+#message {
+    margin: 10px 0;
+    color: #333;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
