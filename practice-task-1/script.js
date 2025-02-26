@@ -1,4 +1,4 @@
-// Слайд-шоу
+п»ї// РЎР»Р°Р№Рґ-С€РѕСѓ
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 
@@ -12,11 +12,11 @@ function nextSlide() {
     showSlide(currentSlide);
 }
 
-// Инициализация слайд-шоу
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃР»Р°Р№Рґ-С€РѕСѓ
 showSlide(currentSlide);
 setInterval(nextSlide, 1000);
 
-// Игра "Угадай число"
+// РРіСЂР° "РЈРіР°РґР°Р№ С‡РёСЃР»Рѕ"
 let targetNumber = sessionStorage.getItem('targetNumber');
 if (!targetNumber) {
     targetNumber = Math.floor(Math.random() * 100) + 1;
@@ -28,16 +28,16 @@ function checkGuess() {
     const message = document.getElementById('message');
 
     if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-        message.textContent = 'Введите число от 1 до 100!';
+        message.textContent = 'Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ 100!';
         return;
     }
 
     if (userGuess === parseInt(targetNumber)) {
-        message.textContent = 'Поздравляем! Вы угадали число!';
+        message.textContent = 'РџРѕР·РґСЂР°РІР»СЏРµРј! Р’С‹ СѓРіР°РґР°Р»Рё С‡РёСЃР»Рѕ!';
     } else if (userGuess < targetNumber) {
-        message.textContent = 'Загаданное число больше!';
+        message.textContent = 'Р—Р°РіР°РґР°РЅРЅРѕРµ С‡РёСЃР»Рѕ Р±РѕР»СЊС€Рµ!';
     } else {
-        message.textContent = 'Загаданное число меньше!';
+        message.textContent = 'Р—Р°РіР°РґР°РЅРЅРѕРµ С‡РёСЃР»Рѕ РјРµРЅСЊС€Рµ!';
     }
 }
 
